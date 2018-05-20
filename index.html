@@ -16,10 +16,10 @@
         <form id="form">
             <h1>TODO LIST</h1>
             <h4>A place to store the things you have to do!</h4>
-           <input type="text" ng-model="form.item" value="item" placeholder="Find your to-dos!">
+           <input type="text" ng-model="name" value="item" placeholder="Find your to-dos!">
            <!-- <section ng-class="{ 'sibling': things. === 'sibling' }"> -->
             <ol>
-                <li ng-repeat="things in items.list track by $index" ng-class="{'completed': things.completed === true}"><button type="button" ng-if="things.completed === false" ng-click="items.completed($index)" class="second_button">Complete</button> {{ things.task }}<i class="material-icons">clear</i></li>
+                <li ng-repeat="things in items.list track by $index | filter: name" ng-class="{'completed': things.completed === true}"><button type="button" ng-if="things.completed === false" ng-click="items.completed($index)" class="second_button">Complete</button> {{ things.task }}<i class="material-icons">clear</i></li>
             </ol>
               <input type="text" ng-model="form.item" value="item" placeholder="Add your todo!">
               <button ng-click="addItem()" id="button">Add</button>
@@ -34,7 +34,11 @@
 
 <!-- 
 
+For filtered search: 
+ng-model="items.search"   (in first input)
+| filter: items.search" (in ng-repear of li)
 
+ng-model="form.item"
              <input type="text" ng-model="form.amount" value="amount" placeholder="amount">
            <input type="submit" ng-submit="addText(form)" addTextvalue="add">
            <h4>My Choice: {{form.item}}</h4>

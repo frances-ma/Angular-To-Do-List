@@ -13,7 +13,36 @@ function ToDoCtrl(){
         vm.list[index].completed = true; 
     }
 }
+/*
+vm.add= function(input) {
+    
 
+    let newTask ={
+            task = input, 
+            completed: false
+         }
+
+    console.log(newTask); 
+          vm.list.push(newToDo); 
+
+ }
+
+
+//// TO REMOVE? ////
+
+
+vm.remove(index) {
+vm.whateverthelistnameis.splice(index, 1)
+}
+
+in the html use ng-click to call the function with the value of the short controller name, then "remove($index)"
+
+
+
+
+
+
+*/ 
 
 angular
     .module("todoApp") 
@@ -21,15 +50,7 @@ angular
 
 
 
-/*
-  vm.addText = function(text) {
-        vm.cart.push(text);
-    }
-      vm.form = {
-        item: "",
-        price: "", 
-        amount: ""
-    };
 
 
-*/
+
+
