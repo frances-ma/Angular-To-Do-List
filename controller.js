@@ -3,46 +3,56 @@
 function ToDoCtrl(){
     const vm = this; 
     vm.list = [
-        {task: "Walk the dog", completed: true}, 
-        {task: "Get a gas", completed:false},
-        {task: "Go to the store", completed:true}, 
-        {task: "Understand AngularJS", completed:false}
+        {task: "Walk the dog", completed: false}, 
+        {task: "Get a gas", completed: false},
+        {task: "Go to the store", completed: false}, 
+        {task: "Understand AngularJS", completed: false}
     ]; 
 
     vm.completed = (index) => {
         vm.list[index].completed = true; 
-    }
-}
-/*
-vm.add= function(input) {
+    };
+
+    vm.remove = (index) => {
+        vm.list.splice(index, 1)
+    };
     
+    vm.add = (input, completed) => {
+        vm.list.push({
+            task: input, 
+            completed: false 
+        }); 
 
-    let newTask ={
-            task = input, 
-            completed: false
-         }
-
-    console.log(newTask); 
-          vm.list.push(newToDo); 
-
- }
+        vm.lists = {}; 
+    }; 
 
 
-//// TO REMOVE? ////
+    vm.edit = (index, things) => {
+        vm.showForm= true;
+        vm.tempItem = {
+            task: things.task,
+            completed: things.completed 
+          };
+          console.log(vm.tempItem); 
+          vm.tempIndex = index;
+     }; 
+
+ // This method takes two parameters: index and things
+  vm.updateItem = (index, things) => {
+    // Removes an item based on the index
+    // Also inserts a brand new object based on what was submitted in the edit form
+    vm.list.splice(index, 1, { 
+      task: things.task,
+      completed: things.completed
+    });
+      vm.showForm = false;
+  };
 
 
-vm.remove(index) {
-vm.whateverthelistnameis.splice(index, 1)
 }
 
-in the html use ng-click to call the function with the value of the short controller name, then "remove($index)"
 
 
-
-
-
-
-*/ 
 
 angular
     .module("todoApp") 

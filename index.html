@@ -13,17 +13,25 @@
 <body>    
 
     <div ng-controller="ToDoCtrl as items">
-        <form id="form">
+            <form id="form" ng-submit="items.add(items.lists.task);">
             <h1>TODO LIST</h1>
             <h4>A place to store the things you have to do!</h4>
-           <input type="text" ng-model="name" value="item" placeholder="Find your to-dos!">
-           <!-- <section ng-class="{ 'sibling': things. === 'sibling' }"> -->
+           <input type="text" ng-model="searchText.task" value="item" placeholder="Find your to-dos!">
             <ol>
-                <li ng-repeat="things in items.list track by $index | filter: name" ng-class="{'completed': things.completed === true}"><button type="button" ng-if="things.completed === false" ng-click="items.completed($index)" class="second_button">Complete</button> {{ things.task }}<i class="material-icons">clear</i></li>
+                <li class="stuff" ng-class="{'completed': things.completed === true}" ng-repeat="things in items.list | filter:searchText track by $index">
+                    <button type="button" ng-if="things.completed === false" ng-click="items.completed($index)" class="second_button">Complete</button> 
+                    {{ things.task }} 
+                    <i class="material-icons edit" ng-click="items.edit($index,things)">edit</i>
+                    <i class="material-icons clear" ng-click="items.remove($index)">clear</i>
+                </li>
             </ol>
-              <input type="text" ng-model="form.item" value="item" placeholder="Add your todo!">
-              <button ng-click="addItem()" id="button">Add</button>
-        </form>
+            <input type="text" ng-model="items.lists.task" value="item" placeholder="Add your todo!">
+              <section ng-show="items.showForm">
+                      <input type="text" ng-model="items.tempItem.task">
+                      <button class="update" ng-click="items.updateItem(items.tempIndex, items.tempItem)">Update The Item</button>
+              </section>
+              <button id="button">Add</button>
+        </form>    
     </div>
 
     <script src="https://code.angularjs.org/1.6.5/angular.min.js"></script>
@@ -32,20 +40,26 @@
 </body>
 </html>
 
+
 <!-- 
+ filter: searchText needs to come before "track by $index"
+- the ng-model="searchText.task" targets the string of task, instead of both this string and 
+the boolean value of completed in the list array.  
 
-For filtered search: 
-ng-model="items.search"   (in first input)
-| filter: items.search" (in ng-repear of li)
+/// NG-CLICK /// 
+- ng-click="items.remove($index)  
 
-ng-model="form.item"
-             <input type="text" ng-model="form.amount" value="amount" placeholder="amount">
-           <input type="submit" ng-submit="addText(form)" addTextvalue="add">
-           <h4>My Choice: {{form.item}}</h4>
-           <p>The Price: {{form.price}}</p>
-           <p>The Amount: {{form.amount}}</p>
+^^ The ng-click first targets ToDoCtrl which is "items", then it uses the "remove" function 
+we established in controller.js. Finally, it specifies that it is removing by index using 
+($index) notation. 
 
-ng-class="{ 'sibling': person.relation === 'sibling'}
+/// NG-CLASS ///
+- ng-class="{'completed': things.completed === true}" 
 
+^^ ng-class in this instance changes the class of the "things" in the control "list" 
+aka the array of objects to "completed" if they their value of "completed" has the boolean
+value of "true"
 
- -->
+in the html use ng-click to call the function with the value of the short controller name, then "remove($index)"
+
+-->

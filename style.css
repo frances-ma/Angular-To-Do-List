@@ -18,23 +18,16 @@ body {
 }
 
 
-
 #form{
     box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
     background: white;  
     display: flex;
     flex-direction: column; 
     justify-content: center; 
-    /* align-items: center;  */
     border-radius: 5px; 
     width: 100%;     
     padding: 40px;  
     box-sizing: border-box;   
-    /* padding: 1px; 
-    width: 100%;
-    height: auto; 
-    margin: 20px; 
-    border-radius: 10px;  */
 }
 
 #button {
@@ -50,6 +43,19 @@ body {
     justify-content: center;  
 }
 
+.update {
+    width:100%;
+    font-size:15px;
+    color:white;
+    background-color: #ff1493; 
+    border-radius:5px;
+    padding:10px;  
+    margin: -5px 0px; 
+    outline: none; 
+    display: flex; 
+    justify-content: center; 
+}
+
 .second_button{
     border: 1px solid #ff69b4; 
     color: #ff69b4; 
@@ -59,7 +65,6 @@ body {
 
 input {
     width:100%;
-    /* length:80%; */
     border-radius:5px;
     padding:10px; 
     margin: 20px 0px; 
@@ -67,6 +72,23 @@ input {
     outline: none; 
 }
 
+
+.stuff {
+    position: relative;  
+    padding: 5px; 
+}
+
+
 .completed {
-    text-decoration: line-through;
+    text-decoration: line-through; 
+}
+
+.edit {
+    position: absolute; 
+    right: 30px; 
+}
+
+.clear {
+    position: absolute; 
+    right: 0; 
 }
